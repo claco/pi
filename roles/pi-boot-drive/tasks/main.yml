@@ -1,0 +1,24 @@
+---
+- name: "Create Raspberry Pi Image Cache Directory"
+  file:
+    mode: "0755"
+    path: "{{ pi_boot_drive_image_cache_directory }}"
+    state: "directory"
+  tags:
+    - "pi-boot-drive-create-cache-directory"
+
+- name: "Download Raspberry Pi Image Archive"
+  get_url:
+    url: "{{ pi_boot_drive_image_archive_uri }}"
+    dest: "{{ pi_boot_drive_image_cache_directory }}/{{ pi_boot_drive_image_archive_file }}"
+    checksum: "{{ pi_boot_drive_image_archive_sha_sum }}"
+  tags:
+    "pi-boot-drive-image-download"
+
+- name: "Extract Raspberry Image Archive"
+  unarchive:
+    src: "{{ pi_boot_drive_image_cache_directory }}/{{ pi_boot_drive_image_archive_file }}"
+    dest: "{{ pi_boot_drive_image_cache_directory }}"
+    remote_src: "yes"
+    creates: "{{ pi_boot_drive_image_cache_directory }}/{{ pi_boot_drive_image_file }}"
+  tags: "pi-boot-drive-image-extract"

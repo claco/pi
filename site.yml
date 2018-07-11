@@ -1,0 +1,8 @@
+---
+- name: Configure Raspberry Pi Boot Drive
+  hosts: localhost
+  connection: local
+  roles:
+    - name: pi-boot-drive
+      tags:
+        - pi-boot-drive

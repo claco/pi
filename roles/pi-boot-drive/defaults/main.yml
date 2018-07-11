@@ -1,0 +1,9 @@
+---
+pi_boot_drive_image_cache_directory: "{{ lookup('env', 'HOME') }}/.cache/ansible/roles/pi-boot-drive"
+pi_boot_drive_image_archive_file: "2018-06-27-raspbian-stretch.zip"
+pi_boot_drive_image_file: "2018-06-27-raspbian-stretch.img"
+pi_boot_drive_image_archive_sha_file: "2018-06-27-raspbian-stretch.zip.sha1"
+pi_boot_drive_image_version: "raspbian-2018-06-29"
+pi_boot_drive_image_archive_uri: "https://downloads.raspberrypi.org/raspbian/images/{{ pi_boot_drive_image_version }}/{{ pi_boot_drive_image_archive_file }}"
+pi_boot_drive_image_archive_sha_uri: "https://downloads.raspberrypi.org/raspbian/images/{{ pi_boot_drive_image_version }}/{{ pi_boot_drive_image_archive_sha_file }}"
+pi_boot_drive_image_archive_sha_sum: "sha1:{{ lookup('url', pi_boot_drive_image_archive_sha_uri).split()[0] }}"
